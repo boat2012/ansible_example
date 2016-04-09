@@ -1,0 +1,5 @@
+- hosts: WebServers;Other
+  remote_user: root
+  tasks:
+   - name: whoami
+     shell: 'whoami > whoami.rst'
