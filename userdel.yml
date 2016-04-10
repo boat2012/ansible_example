@@ -1,0 +1,8 @@
+- hosts: WebServers
+  remote_user: root
+  vars:
+    user: "ztest"
+  tasks:
+   - name: Delete a users
+     user: name={{ user }} state=absent remove=yes
+     sudo: yes
