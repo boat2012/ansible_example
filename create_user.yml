@@ -13,3 +13,8 @@
       user: name={{ user }} password={{ password }}
       become: yes
       become_method: su
+    - name: set up authorized_keys for the deploy user
+      authorized_key: user={{ user }} key="{{ lookup('file','~/.ssh/id_rsa.pub')}}"
+      become: yes
+      become_method: su
+      
