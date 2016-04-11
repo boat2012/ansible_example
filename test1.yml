@@ -1,4 +1,4 @@
-- hosts: WebServers;Other
+- hosts: WebServers
   remote_user: root
   tasks:
    - name: whoami

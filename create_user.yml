@@ -1,13 +1,13 @@
 
 - name: create a user "ztest" with passwd
-  hosts: WebServers
-  remote_user: root
+  hosts: Other
+  remote_user: lixb #zhenghz
   gather_facts: false
   vars:
     user: "ztest"
     # created with:
     # python -c 'import crypt; print crypt.crypt("This is your Password", "$1$SomeSalt$")'
-    password: $1$SomeSalt$8YJJssnrAkOohjvXvdTLt/
+    password: $1$SomeSalt$a2Gz1vWzqwsuOueisxWcm0
   tasks:
     - name: create {{ user }}
       user: name={{ user }} password={{ password }}
