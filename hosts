@@ -1,0 +1,8 @@
+[WebServers]
+ws01
+ws02
+[Other]
+ws_ng01
+ws_ng02
+ws_penfire
+#172.20.102.14:5122 ansible_ssh_user=vision ansible_ssh_pass=wx@fjitv ansible_su_pass=i0t5v90!
