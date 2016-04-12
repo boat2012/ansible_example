@@ -5,4 +5,21 @@ ws02
 ws_ng01
 ws_ng02
 ws_penfire
+
+[other]
+yk[07:09]
+yk11
+yk16
+yk[20:22]
+# yk23
+yk{24:25]
+# yk[26:32]
+yk[33:34]
+
+[yk]
+
+[Other:var]
+ansible_ssh_user=lixb
+ansible_ssh_port=5122
+
 #172.20.102.14:5122 ansible_ssh_user=vision ansible_ssh_pass=wx@fjitv ansible_su_pass=i0t5v90!

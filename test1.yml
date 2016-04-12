@@ -1,5 +1,10 @@
 - hosts: WebServers
-  remote_user: root
+  remote_user: lixb
+  tasks:
+   - name: whoami
+     shell: 'whoami > whoami.rst'
+- hosts: Other
+  remote_user: lixb
   tasks:
    - name: whoami
      shell: 'whoami > whoami.rst'
