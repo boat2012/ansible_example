@@ -12,11 +12,13 @@ yk11
 yk16
 yk[20:22]
 # yk23
-yk{24:25]
+yk[24:25]
 # yk[26:32]
 yk[33:34]
 
 [yk]
+yk07 ansible_ssh_user=lixb ansible_ssh_pass=itv0590! ansible_su_pass=i0t5v90!
+#ws01 ansible_ssh_user=zhenghz ansible_ssh_pass=Fjsx18! ansible_su_pass=i0t5v90!
 
 [Other:var]
 ansible_ssh_user=lixb
