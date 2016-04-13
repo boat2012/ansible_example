@@ -1,0 +1,15 @@
+---
+#
+- name: Stop Exist Zabbix Client Service In Redhat Client
+  shell: ps -ef|grep zabbix|grep -v grep|awk '{print $2}'|xargs kill -9 >>/dev/null 2>&1
+  ignore_errors: yes
+  when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 6
+
+- name: remove the zabbix-agent-2.4.7-1.el6.x86_64 and zabbix-2.4.7-1.el6.x86_64
+  shell: rpm -e zabbix-agent-2.4.7-1.el6.x86_64;rpm -e zabbix-2.4.7-1.el6.x86_64
+  ignore_errors: yes
+  when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 6
+
+- name: remove zabbix user
+  user: name=zabbix state=absent
+
