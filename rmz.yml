@@ -1,0 +1,13 @@
+---
+#  This playbook remove the zabbix agent in this site
+#
+- hosts: yk
+  remote_user: lixb
+  become: yes
+  become_method: su
+  tasks:
+    - include: remove_zabbix_agent.yml
+    - include: rm_ip_rules.yml
+  handlers:
+    - name: restart iptables
+      action: service name=iptables state=restarted
