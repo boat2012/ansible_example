@@ -9,14 +9,9 @@
       ignore_errors: yes
     - name: copy the conf file
       copy: src="/home/zhenghz/files/zabbix_agentd.conf" dest="/etc/zabbix/zabbix_agentd.conf"
-    - name: iptables
-      command: /sbin/iptables -A INPUT -s 172.20.106.5 -p tcp  --dport 10050 -j ACCEPT
-      # iptables: chain=INPUT protocol=tcp destination_port=10050 jump=ACCEPT
-    - name: save iptables
-      command: iptables-save
-
-    - name: restart iptables
-      service: name=iptables state=restarted
-
+    - include: add_ip_rules.yml
     - name: start Zabbix agent
       shell: /etc/init.d/zabbix-agent start
+  handlers:
+    - name: restart iptables
+      action: service name=iptables state=restarted

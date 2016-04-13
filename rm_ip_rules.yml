@@ -1,0 +1,14 @@
+---
+#- hosts: yk
+#  become: yes
+#  become_method: su
+#  tasks:
+    - name: edit the iptables file(/etc/sysconfig/iptables)
+      lineinfile: dest=/etc/sysconfig/iptables
+                  state=absent
+                  regexp="^-A INPUT -s 172\.20\.106\.5 -p tcp  --dport 10050 -j ACCEPT$"
+      notify:
+        - restart iptables
+#  handlers:
+#    - name: restart iptables
+#      action: service name=iptables state=restarted
