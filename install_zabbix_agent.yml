@@ -1,0 +1,22 @@
+---
+- hosts: yk
+  remote_user: lixb
+  become: yes
+  become_method: su
+  tasks:
+    - name: install the package
+      shell: rpm -ivh http://172.20.106.5/zabbix-2.4.7-1.el6.x86_64.rpm; rpm -ivh http://172.20.106.5/zabbix-agent-2.4.7-1.el6.x86_64.rpm
+      ignore_errors: yes
+    - name: copy the conf file
+      copy: src="/home/zhenghz/zabbix_agentd.conf" dest="/etc/zabbix/zabbix_agentd.conf"
+    - name: iptables
+      command: /sbin/iptables -A INPUT -s 172.20.106.5 -p tcp  --dport 10050 -j ACCEPT
+      # iptables: chain=INPUT protocol=tcp destination_port=10050 jump=ACCEPT
+    - name: save iptables
+      command: iptables-save
+
+    - name: restart iptables
+      service: name=iptables state=restarted
+
+    - name: start Zabbix agent
+      shell: /etc/init.d/zabbix-agent start
