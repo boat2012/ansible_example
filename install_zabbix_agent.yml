@@ -6,7 +6,9 @@
   tasks:
     - name: install the package
       shell: rpm -ivh http://172.20.106.5/zabbix-2.4.7-1.el6.x86_64.rpm; rpm -ivh http://172.20.106.5/zabbix-agent-2.4.7-1.el6.x86_64.rpm
-      ignore_errors: yes
+#      ignore_errors: yes
+      when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 6
+
     - name: copy the conf file
       copy: src="/home/zhenghz/files/zabbix_agentd.conf" dest="/etc/zabbix/zabbix_agentd.conf"
     - include: add_ip_rules.yml
