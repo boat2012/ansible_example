@@ -1,10 +1,16 @@
 ---
+# this file user to install zabbix agent on the target host
+#
 - hosts: yk
   remote_user: lixb
   become: yes
   become_method: su
   tasks:
-    - name: install the package
+    - name: install the package for redhat 5
+      shell: rpm -ivh http://172.20.106.5/zabbix-2.4.7-1.el5.x86_64.rpm; rpm -ivh http://172.20.106.5/zabbix-agent-2.4.7-1.el5.x86_64.rpm --nodeps --force
+#      ignore_errors: yes
+      when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 5 
+    - name: install the package for redhat 6
       shell: rpm -ivh http://172.20.106.5/zabbix-2.4.7-1.el6.x86_64.rpm; rpm -ivh http://172.20.106.5/zabbix-agent-2.4.7-1.el6.x86_64.rpm
 #      ignore_errors: yes
       when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 6
