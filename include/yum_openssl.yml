@@ -1,0 +1,7 @@
+- name: install openssl
+  yum: name=openssl state=present
+  # shell: yum install openssl -y
+- name: install openssl-devel
+  yum: name=openssl-devel state=present
+  # shell: yum install openssl-devel -y
+

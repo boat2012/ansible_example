@@ -1,0 +1,13 @@
+- name: back all the repo 
+  file: path=/etc/yum.repos.d/bak state=directory
+- name: copy bak file
+  shell: mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/bak
+- name: ver5 copy  /etc/yum.repos.d/rhel-debuginfo.repo to remote client 
+  copy: src="files/rhel-debuginfo_5.repo" dest="/etc/yum.repos.d/rhel-debuginfo.repo"
+  when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 5
+- name: ver6 copy  /etc/yum.repos.d/rhel-debuginfo.repo to remote client 
+  copy: src="files/CentOS6-Base-163.repo" dest="/etc/yum.repos.d/rhel-debuginfo.repo"
+  when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 6
+
+
+

@@ -1,0 +1,7 @@
+---
+  - name: Config /etc/resolv.conf, add a line to the file
+    lineinfile: dest=/etc/resolv.conf
+                state=present
+                regexp='^nameserver.*218\.85\.152\.99'
+                line='nameserver 218.85.152.99'
+

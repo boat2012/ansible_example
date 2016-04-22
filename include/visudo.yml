@@ -1,0 +1,6 @@
+---
+  - name: Config /etc/sudoers
+    lineinfile: dest=/etc/sudoers state=present  line='{{item}}' validate='visudo -cf %s'
+    with_items:
+           - "{{user}} ALL=(ALL) NOPASSWD: ALL"
+           - "Defaults: {{user}}  !requiretty"

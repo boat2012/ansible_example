@@ -1,20 +1,25 @@
 
-- name: create a user "ztest" with passwd
-  hosts: Other
-  remote_user: lixb #zhenghz
-  gather_facts: false
+- name: create a user with passwd
+  hosts: itv20 
+  remote_user: zhenghz
+#  remote_user: lixb
+  become: yes
+  become_method: su
+#  gather_facts: false
   vars:
-    user: "ztest"
+    user: "zhenghz"
     # created with:
     # python -c 'import crypt; print crypt.crypt("This is your Password", "$1$SomeSalt$")'
-    password: $1$SomeSalt$a2Gz1vWzqwsuOueisxWcm0
+    password: $1$SomeSalt$VjAlGZTWtD5t373oLAoTN0
   tasks:
     - name: create {{ user }}
       user: name={{ user }} password={{ password }}
-      become: yes
-      become_method: su
     - name: set up authorized_keys for the deploy user
       authorized_key: user={{ user }} key="{{ lookup('file','~/.ssh/id_rsa.pub')}}"
-      become: yes
-      become_method: su
+    - name: config /etc/sudoers
+      lineinfile: dest=/etc/sudoers 
+                  regexp="{{ user }} ALL"
+                  line="{{ user }} ALL=(ALL) ALL"
+                  state=present
+    - include: linux_config.yml
       

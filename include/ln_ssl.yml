@@ -1,0 +1,21 @@
+# use to link the libss.so & libcrypto
+#
+- name: libcrypto
+  command: ln -s /usr/lib64/libcrypto.so.1.0.0 /usr/lib64/libcrypto.so.6 
+  when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 5
+  ignore_errors: yes
+- name: libssl
+  command: ln -s /usr/lib64/libssl.so.1.0.0 /usr/lib64/libssl.so.6
+  when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 5
+  ignore_errors: yes
+- name: libcrypto
+  command: ln -s /usr/lib64/libcrypto.so.1.0.0 /usr/lib64/libcrypto.so.10 
+  when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 6
+  ignore_errors: yes
+- name: libssl
+  command: ln -s /usr/lib64/libssl.so.1.0.0 /usr/lib64/libssl.so.10
+  when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int == 6
+  ignore_errors: yes
+
+
+

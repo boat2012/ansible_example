@@ -1,0 +1,14 @@
+---
+#- hosts: yk
+#  remote_user: zhenghz
+#  become: yes
+#  become_method: su
+# regexp="^-A INPUT -s 110\.84\.142\.4 -p tcp  --dport 10050 -j ACCEPT$"
+# line="-A INPUT -s 110.84.142.4 -p tcp  --dport 10050 -j ACCEPT"
+#  tasks:
+  - name: copy the  .bashrc to the remote host 
+    copy: src="/home/zhenghz/.bashrc" dest="/home/zhenghz/.bashrc"
+  - name: copy the  .bash_profile to the remote host 
+    copy: src="/home/zhenghz/.bash_profile" dest="/home/zhenghz/.bash_profile"
+#    become: yes
+#    become_method: su
