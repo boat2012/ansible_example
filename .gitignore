@@ -2,6 +2,7 @@
 *.retry
 .*
 ansible/*
+linux_config/*
 pwfile
 zabbi*.conf
 *.txt
